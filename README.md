@@ -14,9 +14,11 @@ Copy the extracted spiner folder into that directory.
 
 Make sure you have these dependencies installed:
 
-BepInEx 5.4.2100
+BepInExPack by BepInEx 5.4.2304
 
-LethalLib 0.15.1
+LethalLib by Evaisa 1.1.1
+
+lethalconfig by AinaVT v1.4.6
 
 Launch the game once, then close it to generate local configuration files.
 You're all set — the mod is ready to go! 🕷️

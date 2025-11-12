@@ -5,6 +5,7 @@
 	"description": "Adds the Spiner to Lethal Company. Fully custom animations and behavior.",
 	"dependencies": [
 		"BepInEx-BepInExPack-5.4.2100",
+		"ainavt.lc.lethalconfig-1.4.6",
 		"Evaisa-LethalLib-0.15.1"
 	]
 }
