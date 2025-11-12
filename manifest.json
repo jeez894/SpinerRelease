@@ -1,0 +1,11 @@
+{
+	"name": "Spiner",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/jeez894/SpinerRelease",
+	"description": "Adds the Spiner to Lethal Company. Fully custom animations and behavior.",
+	"dependencies": [
+		"BepInEx-BepInExPack-5.4.2100",
+		"Evaisa-LethalLib-0.15.1",
+		"Evaisa-LCCustomAssets-1.1.4"
+	]
+}
