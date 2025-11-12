@@ -18,8 +18,6 @@ BepInEx 5.4.2100
 
 LethalLib 0.15.1
 
-LCCustomAssets 1.1.4
-
 Launch the game once, then close it to generate local configuration files.
 You're all set — the mod is ready to go! 🕷️
 
