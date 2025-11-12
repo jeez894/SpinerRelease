@@ -1,3 +1,57 @@
+# 🚧 Pre-Release
+
+Hello, and welcome to the first public version of Spiner!
+
+## 🧩 Installation (testing build)
+
+Click the <> Code → Download ZIP button, then extract the archive.
+
+In r2modman, go to Settings → Browse profile folder.
+
+Open BepInEx/plugins/.
+
+Copy the extracted spiner folder into that directory.
+
+Make sure you have these dependencies installed:
+
+BepInEx 5.4.2100
+
+LethalLib 0.15.1
+
+LCCustomAssets 1.1.4
+
+Launch the game once, then close it to generate local configuration files.
+You're all set — the mod is ready to go! 🕷️
+
+<details>
+<summary>
+
+## ⚠️ SPOIL — CLICK HERE for full Behavior Description
+
+</summary>
+
+## 🌕 Normal Mode
+
+The Spiner patrols quietly until it spots a player.
+Once locked, it enters Stalking mode, silently following and building tension.
+When its stalking meter is full, it transitions into Kidnapping, grabs the player, and begins Transport.
+If all other players die during this time, it eventually releases the captive and flees (Runaway).
+
+## 🌑 Dark Mode
+
+After being killed once, the Spiner resurrects in a faster, deadlier form.
+During transport, it starts a lethal countdown — when the timer hits zero, the victim is instantly executed before the creature returns to Patrol.
+If the player drifts too far or disconnects, the Spiner releases them and enters Runaway mode.
+
+</details>
+
+💬 This is a pre-release build, so bugs are expected.
+Please report any issues on GitHub, or DM on Discord if you have access to the test group.
+👉 When reporting, include as many details as possible — what happened before, during, and after the issue.
+
+
+
+
 # 🕷️ Spiner
 ![Logo](https://i.imgur.com/xxxxxxxx.png)
 
