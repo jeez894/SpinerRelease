@@ -1,25 +1,6 @@
-# 🚧 Pre-Release
+# 🚧 Release
 
 Hello, and welcome to the first public version of Spiner!
-
-## 🧩 Installation (testing build)
-
-Click the <> Code → Download ZIP button, then extract the archive.
-
-In r2modman, go to Settings → Browse profile folder.
-
-Open BepInEx/plugins/.
-
-Copy the extracted spiner folder into that directory.
-
-Make sure you have these dependencies installed:
-
-BepInExPack by BepInEx 5.4.2304
-
-LethalLib by Evaisa 1.1.1
-
-Launch the game once, then close it to generate local configuration files.
-You're all set — the mod is ready to go! 🕷️
 
 <details>
 <summary>
@@ -43,15 +24,8 @@ If the player drifts too far or disconnects, the Spiner releases them and enters
 
 </details>
 
-💬 This is a pre-release build, so bugs are expected.
-Please report any issues on GitHub, or DM on Discord if you have access to the test group.
-👉 When reporting, include as many details as possible — what happened before, during, and after the issue.
-
-
-
-
 # 🕷️ Spiner
-![Logo](https://i.imgur.com/xxxxxxxx.png)
+![Logo](media/screenshot.png)
 
 Adds the ***Spiner*** — a fully custom enemy for **Lethal Company**, featuring new AI states, animations, and sounds.
 
@@ -66,12 +40,12 @@ Adds the ***Spiner*** — a fully custom enemy for **Lethal Company**, featuring
 - *Dark Mode*
 - Reacts dynamically to players nearby during transport  
 
-![Spiner Demo](https://i.imgur.com/yyyyyyyy.gif)
+![Spiner Demo](media/preview.gif)
 
 ---
 
 ## 📦 Installation
-1. Install **BepInEx 5.4.2100**, **LethalLib 0.15.1**, and **LCCustomAssets 1.1.4**
+1. Install at least **BepInEx 5.4.2100** and **LethalLib**.  (*LethalConfig by AinaVT is optional, for in-game config sliders.*)
 2. Copy `SpinerVisual.dll` into your `BepInEx/plugins` folder  
 3. Place the `spiner` asset folder next to the `.dll`  
 4. Launch the game — the Spiner will automatically spawn on supported moons
@@ -88,22 +62,31 @@ If killed... run.
 ---
 
 ## 🧩 Configuration
-A runtime config (`BepInEx/config/Spiner.cfg`) lets you tweak:
-- Max HP  
-- Detection volume  
-- Dark mode delay & kill timer  
-- Sound frequency and intensity  
+A config file is generated at `BepInEx/config/Jeez.Spiner.cfg` after the first launch.
 
-compatible with lethalconfig by AinaVT
+You can tweak:
+- **MaxHP**
+- **RoamVolume** (0..1)
+- **DarkMode** (Enabled)
+- **DarkReviveDelaySec**
+- **DarkKillTimeSec**
+- **SpawnWeight** (0 = disable)
+
+✅ **Optional:** If you have **LethalConfig** installed, in-game sliders are available for:
+- MaxHP
+- RoamVolume
+- DarkMode + timers (revive / kill)
+
+*(SpawnWeight is currently configurable via the config file only.)*
 
 
 ---
 
 ## 👥 Credits
-- **Code & AI** – Jeez  
-- **Design** – SavG
+- **Code & basically everything else** – Jeez  
+- **3D model & animations** – SavG
 - **Design** – CashB0t
-- **Frameworks** – [Evaisa](https://thunderstore.io/c/lethal-company/p/Evaisa/) (*LethalLib*, *LCCustomAssets*)  
+- **Frameworks** – [Evaisa](https://thunderstore.io/c/lethal-company/p/Evaisa/) (*LethalLib*)  
 - **Testing & Balancing** – Community testers  
 
 ---
@@ -117,4 +100,4 @@ compatible with lethalconfig by AinaVT
 
 ## 🪦 License
 This project is open source under the **MIT License**.  
-All custom content © 2025 Jeez.
+All custom content © 2026 Jeez.
