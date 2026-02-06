@@ -1,3 +1,13 @@
+# 1.0.6
+
+* Configuration file descriptions translated to English  
+  (delete `Jeez.Spiner.cfg` to regenerate and apply updated descriptions)
+* Terminal bestiary entry added
+
+# 1.0.5
+
+* UI update
+
 # 1.0.3
 
 * Information update for full public release

@@ -25,7 +25,7 @@ If the player drifts too far or disconnects, the Spiner releases them and enters
 </details>
 
 # 🕷️ Spiner
-![Logo](media/screenshot.png)
+![Logo](https://raw.githubusercontent.com/jeez894/SpinerRelease/main/media/screenshot.png)
 
 Adds the ***Spiner*** — a fully custom enemy for **Lethal Company**, featuring new AI states, animations, and sounds.
 
@@ -40,7 +40,7 @@ Adds the ***Spiner*** — a fully custom enemy for **Lethal Company**, featuring
 - *Dark Mode*
 - Reacts dynamically to players nearby during transport  
 
-![Spiner Demo](media/preview.gif)
+![Preview](https://raw.githubusercontent.com/jeez894/SpinerRelease/main/media/preview.gif)
 
 ---
 

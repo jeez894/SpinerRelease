@@ -1,6 +1,6 @@
 {
 	"name": "Spiner",
-	"version_number": "1.0.3",
+	"version_number": "1.0.6",
 	"website_url": "https://github.com/jeez894/SpinerRelease",
 	"description": "Adds the Spiner to Lethal Company. Fully custom animations and behavior.",
 	"dependencies": [
