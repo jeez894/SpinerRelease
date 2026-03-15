@@ -1,0 +1,151 @@
+﻿1. Implémentation de l’interface IVisibleThreat
+Ces méthodes indiquent comment d’autres systèmes voient ce Forest Giant comme une menace :
+
+ThreatType IVisibleThreat.type
+Retourne ThreatType.ForestGiant.
+SendSpecialBehaviour(int id)
+Retourne 0 (pas de comportement spécial).
+GetThreatLevel(Vector3 seenByPosition)
+Retourne 18 (niveau de menace fixe).
+GetInterestLevel()
+Retourne 0.
+GetThreatLookTransform() / GetThreatTransform()
+Respectivement : renvoie this.eye et base.transform.
+GetThreatVelocity()
+Retourne la vitesse de l’agent si l’IA est owner, sinon Vector3.zero.
+GetVisibility()
+Renvoie 0 si l’ennemi est mort, 1 s’il se déplace, sinon 0.75.
+2. Overrides de EnemyAI
+Le Forest Giant hérite d’EnemyAI et surcharge plusieurs méthodes :
+
+Start()
+
+Appelle base.Start() : initialisations diverses (stealthMeters[], détache lookTarget).
+Update()
+
+Appelle base.Update().
+Gère la logique frame par frame :
+Si ennemi mort → baisse volume burning.
+Si stun + en train de manger → StopKillAnimation(). Sinon, GiantSeePlayerEffect().
+Met à jour Animator (paramètre stunned).
+Fait un switch sur currentBehaviourStateIndex (0=Patrol, 1=Chase, 2=Burning, etc.) pour gérer la vitesse, la rotation, etc.
+DoAIInterval()
+
+Appelle base.DoAIInterval() pour la logique parent de navigation.
+Exécuté toutes les X secondes (logiciel).
+En fonction de l’état (0,1,2…), lance ou arrête des recherches (StartSearch, StopSearch), gère investigating, etc.
+HitEnemy(int force, ...)
+
+Appelle base.HitEnemy(...).
+Réduit enemyHP. Si HP <= 0, appelle base.KillEnemyOnOwnerClient(false).
+KillEnemy(bool destroy)
+
+Appelle base.KillEnemy(...), speed = 0, stop éventuelle coroutine eatPlayerCoroutine, DropPlayerBody(), joue un cri, etc.
+AnimationEventA()
+
+Event d’animation (ex: quand l’ennemi tombe) → spherecast pour tuer un joueur proche.
+HitFromExplosion(float distance)
+
+Logique parent puis si pas mort et pas déjà en state “burning” → SwitchToBehaviourState(2).
+FinishedCurrentSearchRoutine() et ReachedNodeInSearch()
+
+Appelées quand une coroutine de recherche termine ou quand l’IA atteint un node (waypoint).
+Si on est en chase et qu’on n’a plus de LOS, repasse en roaming.
+OnCollideWithPlayer(Collider other)
+
+Si collision valide avec un joueur local et qu’on est en state 0 (Patrol), on commence la chase (BeginChasingNewPlayerServerRpc).
+Sinon, GrabPlayerServerRpc(...) pour lancer l’animation de saisie.
+__initializeVariables()
+
+Appelle base.__initializeVariables(). Vide ici.
+__getTypeName()
+
+Retourne "ForestGiantAI" (pour le netcode interne).
+3. Méthodes internes / outils IA
+LookForPlayers()
+
+Appelle base.GetAllPlayersInLineOfSight(...). Met à jour un système de playerStealthMeters[].
+Détecte si un joueur devient assez « visible » pour déclencher une chase (état 1) ou une investigation.
+Peut lancer BeginChasingNewPlayerClientRpc(...) si stealth > 1.
+FindAndTargetNewPlayerOnLocalClient(PlayerControllerB newPlayer)
+
+Change la cible chasingPlayer, réinitialise timeSinceChangingTarget.
+GiantSeePlayerEffect()
+
+Gère la peur du joueur local (augmente sa FearLevel si le géant le voit, etc.).
+ReachForPlayerIfClose()
+
+En chase, si le joueur est à <8m sans obstacle, augmente le weight de l’IK reachForPlayerRig pour une animation de saisie.
+LookAtTarget()
+
+Tourne le géant vers this.lookTarget (rotation lissée).
+CalculateAnimationDirection(float maxSpeed)
+
+Calcule velX, velZ pour l’Animator en fonction de la vitesse locale agentLocalVelocity.
+ReactToNoise(float distanceToNoise, Vector3 noisePosition)
+
+Si en chase → petit check (stopAndLookTimer, etc.).
+Sinon, potentiellement passe investigating = true et set investigatePosition.
+DropPlayerBody(), StopKillAnimation()
+
+Méthodes utilitaires pour annuler l’animation de manger et libérer le joueur (si vivant).
+Coroutines :
+
+EatPlayerAnimation(...) : L’ennemi se déplace (lerp) vers une position, joue l’anim de manger. Après ~4.4s, tue le joueur si toujours dans l’animation.
+4. Méthodes Netcode (RPC)
+Le géant utilise ServerRpc et ClientRpc pour synchroniser la chase et la saisie :
+
+BeginChasingNewPlayerServerRpc(int playerId)
+
+Côté client, appelle ce RPC pour demander au serveur de poursuivre un nouveau joueur.
+Le serveur, à réception, appelle BeginChasingNewPlayerClientRpc(...).
+BeginChasingNewPlayerClientRpc(int playerId)
+
+Tous les clients reçoivent l’info : on change chasingPlayer, on passe en state 1 (chase).
+HasLostPlayerInChaseClientRpc() / HasFoundPlayerInChaseClientRpc()
+
+Notifie tous les clients que le géant a perdu ou retrouvé la cible (modifie lostPlayerInChase, lookingAtTarget).
+GrabPlayerServerRpc(int playerId)
+
+Saisie d’un joueur (depuis OnCollideWithPlayer si on est en patrouille).
+Le serveur effectue un raycast, puis appelle GrabPlayerClientRpc(...).
+GrabPlayerClientRpc(int playerId, Vector3 enemyPosition, int enemyYRot)
+
+Sur chaque client, lance BeginEatPlayer(...) et la coroutine EatPlayerAnimation.
+DetectPlayerVoiceServerRpc(Vector3 noisePosition)
+
+Le joueur fait un bruit (voix) → envoie cette RPC au serveur, qui appelle ReactToNoise(...).
+InitializeRPCS_ForestGiantAI() & les __rpc_handler_xxx
+
+Méthodes statiques qui enregistrent et gèrent l’ID ↔ fonction pour tous les RPC ci-dessus.
+5. Variables / Champs principaux
+roamPlanet, searchForPlayers : gestion des patrouilles et de la recherche.
+playerStealthMeters[] : indique à quel point chaque joueur est détecté.
+Timers : stopAndLookTimer, timeSpentStaring, noticePlayerTimer, etc.
+Animation : reachForPlayerRig (IK), inEatingPlayerAnimation, coroutines eatPlayerCoroutine.
+Netcode : chasingPlayer, lostPlayerInChase, chasingPlayerInLOS, etc.
+Audio : giantBurningAudio, farWideSFX.
+Transforms : eye, lookTarget, centerPosition, etc.
+Schéma simplifié du flow IA
+Patrouille (state=0)
+
+Update() : vitesse ~5f, parfois stopAndLookTimer → rotation sur place.
+DoAIInterval() : lance StartSearch(...) sur roamPlanet.
+Chase (state=1)
+
+Update() : vérifie si on a perdu ou retrouvé le joueur (LOS, timers).
+ReachForPlayerIfClose(), etc.
+DoAIInterval() : StopSearch(roamPlanet), SetMovingTowardsTargetPlayer(chasingPlayer).
+Burning (state=2)
+
+Update() : allume particules de feu, augmente giantBurningAudio.volume, meurt après 10s.
+DoAIInterval() : patrouille ou roamPlanet différemment.
+Manger (Grab / Eat)
+
+Via collision ou stealth detection.
+Lance GrabPlayerServerRpc → GrabPlayerClientRpc → BeginEatPlayer() → coroutine EatPlayerAnimation().
+Tue le joueur au bout de ~4.4s.
+Investigation
+
+LookForPlayers() ou ReactToNoise() peuvent basculer en mode investigating=true.
+Dans DoAIInterval(), on se rend sur investigatePosition.

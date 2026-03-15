@@ -1,0 +1,2 @@
+ouvrir la solution stub spiner faire les modif necessaire et recompiler avec ctrl maj B
+recup le fichier dll dans bin-debug-netstandard et le mettre en remplacement du dll dans spinerunity unityproject assests plugins, verifier le GUID dans le meta generer (doit etre generer par unity une fois lancé) et verifier les modif dans unity

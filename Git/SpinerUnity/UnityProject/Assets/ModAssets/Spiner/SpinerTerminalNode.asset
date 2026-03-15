@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e80ae96b3eb9177eea5c8f9dadbcda1, type: 3}
+  m_Name: SpinerTerminalNode
+  m_EditorClassIdentifier: 
+  displayText: "Spiner\r\nSigurd's danger Level: 30%\r\nClassification: Non-biological
+    Entity (Unstable)\r\n\r\n\u201CI don\u2019t think this thing is alive.\r\nBut
+    I\u2019m not convinced it\u2019s dead either.\u201D\r\n\u2014 REDACTED\r\n\r\nDescription\r\n\r\nThe
+    Spiner is not a creature in the conventional sense.\r\nInitial examinations suggest
+    an impossible aggregation of muscle fibers and bones, assembled without any recognizable
+    or even logical structure. These components appear misaligned, fused, and stretched,
+    as if pulled together under twisted tension.\r\n\r\nA thin membrane, similar
+    to skin envelops the mass. This \u201Cskin\u201D shows no signs of natural growth
+    and appears to function purely as a containment layer.\r\n\r\nNo organs have
+    been conclusively identified ouside of his eyes.\r\n\r\nBehavior\r\n\r\nThe Spiner
+    exhibits prolonged stalking behavior, remaining just outside direct observation.
+    Subjects report a strong sensation of being watched well before visual contact
+    is established.\r\n\r\nThe entity may emits sounds that vary between individuals.
+    Analysis suggests the Spiner does not imitate distress or fear, but instead reproduces
+    sounds the target finds deeply comforting. The mechanism appears reflexive and
+    organic rather than deliberate.\r\n\r\nOnce contact is made, the Spiner may restrain
+    and transport the subject.\r\nNotably, captured individuals describe the experience
+    as calm, controlled, and in some cases comforting. No immediate physical harm
+    is observed during transport.\r\n\r\nSubjects can be forcibly released if the
+    entity sustains damage.\r\n\r\nNotes\r\n\r\nRepeated encounters imply the Spiner
+    reacts unpredictably to lethal force.\r\nField reports consistently end after
+    attempted termination.\r\n\r\nMY notes:\nDO NOT KILL."
+  terminalEvent: 
+  clearPreviousText: 1
+  maxCharactersToType: 25
+  buyItemIndex: 0
+  buyVehicleIndex: 0
+  isConfirmationNode: 0
+  buyRerouteToMoon: 0
+  displayPlanetInfo: 0
+  shipUnlockableID: 0
+  buyUnlockable: 0
+  returnFromStorage: 0
+  itemCost: 0
+  creatureFileID: 0
+  creatureName: spiner
+  storyLogFileID: 0
+  overrideOptions: 0
+  acceptAnything: 0
+  terminalOptions: []
+  playClip: {fileID: 0}
+  playSyncedClip: 0
+  displayTexture: {fileID: 0}
+  displayVideo: {fileID: 0}
+  loadImageSlowly: 0
+  persistentImage: 0

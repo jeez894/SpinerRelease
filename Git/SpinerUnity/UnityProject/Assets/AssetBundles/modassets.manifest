@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 1753090537
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 207f36b238fbc064f91481d58662acf7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fe664363fac3210b81611c2879703e7c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 207f36b238fbc064f91481d58662acf7
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 0e80ae96b3eb9177eea5c8f9dadbcda1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d3cecf05b78b173605122a700874719c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ModAssets/Spiner/Bestiary/Spiner TK.asset
+- Assets/ModAssets/Spiner/Bestiary/Spiner TN.asset
+Dependencies: []
